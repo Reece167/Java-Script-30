@@ -1,13 +1,23 @@
 # Java-Script-30 Tasks
 
-**Drum Kit
+**Drum Kit**
+
 //////////////////////////////////// 
-Clock
+
+**Clock**
+
 ////////////////////////////////////
-HTML5 Canvas
+
+**HTML5 Canvas**
+
 ////////////////////////////////////
-Dev Tools
+
+**Dev Tools**
+
 ////////////////////////////////////
-JavaScript References
+
+**JavaScript References**
+
 ////////////////////////////////////
-Video Speed Controller*
+
+**Video Speed Controller**
