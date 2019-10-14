@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">boom</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">ride</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">tom</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <audio data-key="83" src="sounds/hihat.wav"></audio>
+  <audio data-key="68" src="sounds/kick.wav"></audio>
+  <audio data-key="70" src="sounds/openhat.wav"></audio>
+  <audio data-key="71" src="sounds/boom.wav"></audio>
+  <audio data-key="72" src="sounds/ride.wav"></audio>
+  <audio data-key="74" src="sounds/snare.wav"></audio>
+  <audio data-key="75" src="sounds/tom.wav"></audio>
+  <audio data-key="76" src="sounds/tink.wav"></audio>
+
+<script>
+
+  // Functions
+
+  function playSound(e) {
+
+    /*console.log(e) - (e.keycode) will give us the keycode directly
+      Detailing all sorts of info about the key pressed such as keycode
+      */
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    /*
+    Is there an audio element on the page that matches a data-key of 65
+    ( Select an audio element of attribute [data-key="${e.keycode}"] )
+      */
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+    //console.log(audio) Currently returns null as there is no audio element assigned
+    if (!audio) return; // Stops the function from running if there is no audio
+    audio.currentTime = 0; // Rewind audio to the start
+    audio.play(); // Play audio
+    key.classList.add('playing'); // Adds the playing class to the key in order to change the look on the page
+  }
+
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return; // Skip it if its not a transform
+    this.classList.remove('playing'); // Removes the playing class from the key
+  }
+
+  //
+
+  const keys = document.querySelectorAll('.key'); // Selects all the key elements into an array
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  /*
+  Listens for an event of transitionend on each key
+  and then removes the transition on the key with the removeTransition function
+   */
+  window.addEventListener('keydown', playSound)
+  /*
+   Listen for the keydown event, which will run the function playSound
+   that will give us the event
+     */
+
+</script>
+
+
+</body>
+</html>
