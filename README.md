@@ -62,8 +62,8 @@ key that gets pressed. Then we need to identify if there is an audio element on 
 matches the `data-key="?"` (data-key is a data attribute to be set apart from other data).
 This is achieved by using a querySelector in conjunction with a attribute selector to 
 match the found keycode located as a variable in the event, '`audio[data-key${e.keyCode}]`.
-              
-              
+           
+
 To create an animation for each button when they're pressed, requires us to use the key
 identifier where we can then apply the class playing with `key.classList.add('playing')`.
 Then we need to remove the class with a transition end event, which will run when the
@@ -71,4 +71,5 @@ transition of the animation finishes being applied. Using a querySelector to get
 allows us to identify which ones have the class applied, where we can loop over each key.
 Then we can listen for a *transitionend* and when that ends we run a remove function to
 use `this.classList.remove('playing')` to remove the class that is applied to any key.
+
 ---
