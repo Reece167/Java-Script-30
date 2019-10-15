@@ -1,10 +1,10 @@
 # Java-Script-30 Tasks
 
-**Drum Kits**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Whack a Mole Game**
+**Drum Kits** - - - - - - - - - **Whack a Mole Game**
 
 //////////////////////////////////// ////////////////////////////////////
 
-**Clock** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Speech Synthesis**
+**Clock** - - - - - - - - - - - - - **Speech Synthesis**
 
 //////////////////////////////////// ////////////////////////////////////
 
