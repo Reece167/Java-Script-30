@@ -198,3 +198,54 @@ apply the playbackRate value to the video's playbackRate so the speed set in the
 the speed of the video `video.playbackRate = playbackRate`.
 
 ----
+
+**CountDown Timer**
+
+Designate how long you want the timer to be with the buttons in the menu bar or type the amount
+of minutes you want. Which will set the timer and countdown to 0 as well as show you the time
+that the timer will end at.
+
+Timers work by giving the amount of time that you want and you elapse that time over until it
+finishes at 0. To avoid just using a setInterval which will freeze if you tab out or scroll, 
+adding extra time until the countdown finishes, we will get the time that the timer started 
+and run the timer for the duration based on the amount of time that elapses.
+            
+----
+
+First we create a function to get the current time using `const now = Date.now()`and the time
+that the timer should end based on the amount of seconds set on the timer.
+`const then = now + seconds * 1000` As seconds is in seconds and now is milliseconds we must *
+1000 to get the variable then in milliseconds. Now if we use a setInterval if it does
+freeze/ stop for any reason it will just update the time to the correct value. In the interval
+we need to run it every second and figure out how many seconds are left,
+`const secondsLeft = Math.round((then - Date.now()) / 1000)` will give the amount of seconds
+left rounded to the whole number. Now we need to set a stopping condition or it would
+go on forever, stating if secondsLeft is less than 0 we clear the interval then return.
+
+However, it takes a second before the interval is ran so if we set a timer for 10 seconds
+it would take a second then produce 9-8-7 etc. So we must display the timer before the interval
+so it shows 10, then shows it as 9 and so on afterwards. Using a displayTimeLeft function
+we can convert the time from seconds to minutes and seconds to be displayed correctly.
+To get the minutes we use `const minutes = Math.floor(seconds / 60)` and remainder,
+`const remainderSeconds = seconds % 60`. Then all we need to do is display the minutes
+and remainderSeconds onto the page with
+`const display = ${minutes}:${remainderSeconds < 10 ? '0' : '' }${remainderSeconds}` and
+`document.title = display`, `timerDisplay.textContent = display` updating the time on
+the page as well as the tab on the browser.
+
+Now we need another function to display the end time stamp of when the timer will end.
+It takes in the timestamp of when the timer will finish, but we need to turn the timestamp
+into a date using `const end = new Date(timestamp)`. Then we get the hours and minutes of
+the end time and add it to the textContent of endTime
+
+All that's left is to link up all the buttons on the menu and text box to the program in order
+for you to set the time you want. We do that by listening for an event of a button click, that
+will start the timer. Using `const seconds = parseInt(this.dataset.time)`, `timer(seconds)`
+we set the timer with the value given by the button. However, we must clear the timer whenever
+we start a timer in the timer function, but before the new time is set. Last thing is the text
+box, where we want to take the form on the page. We wait for the submit event till we
+execute a function that prevents the page from refreshing, and gets the inputted minutes.
+Then we take the minutes and turn them into seconds before passing them to our timer and
+removing the inputted time from the form.
+
+----
