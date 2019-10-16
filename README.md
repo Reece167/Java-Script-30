@@ -95,7 +95,7 @@ Now that we've got the look of the clock sorted, we need to make the scripts for
 order for them to know the real time of day in order to behave appropriately as a clock.
 For each hand we need to get their respecting elements in order to apply the rotations for them,
 using querySelectors. Then we can create a function designed to get the current date/time in
-javascript using `const now = new Date()`, this gets . Using new variables such as 
+javascript using `const now = new Date()`. Using new variables such as 
 `const seconds = now.getSeconds()`, `const minutes = now.getMinutes()`, `const hours 
 = now.getHours()` gives us the correct time for each hand. However, we need to convert the time
 into degrees on the clock in order for it to operate correctly. For seconds and minutes
@@ -162,3 +162,39 @@ Creating a forever incrementing and decrement line width as you draw.
 
 ----
 
+**Dev Tools**
+
+This project is made to show how you can use certain console tools to get data, that may be
+needed in use of debugging a program.
+
+----
+
+**References**
+
+Small html to run simple operations in showing how variables, arrays and objects work with
+assigning data and changing them part way through etc.
+
+----
+
+**Video Speed Controller**
+
+Small project designed to allow you to adjust the playback speed of a video. Changing the speed
+from 0.4x to 4x based on where your mouse is on the bar.
+
+----
+
+We start with selecting the pages speed, bar and video classes in order for us to use later
+in adjusting the video. Next we need an event listener to run a function when the mouse is
+over the speed bar. We need to get the Y coordinate of the bar as you move your mouse,
+using `e.pageY - this.offsetTop` we get the Y coordinate - the area above the bar as we
+can't assume that the bar is at the top of the page. In order to change the Y coordinate into
+a percentage that we can use the coordinate - the offsetHeight. Then we need a min and max
+to set the boundaries of the bar. After that we add the height value to the style of the bar
+in order to apply the speed we want with the level of the bar as we move the mouse. All that's
+left is to set the actual number of registered on the bar and set it to the speed of the video.
+Using the boundaries of the bar with the percentage given when the mouse is on the bar, we set
+the text content to be the playbackRate variable to be fixed to 2 decimal places. Finally to
+apply the playbackRate value to the video's playbackRate so the speed set in the bar matches
+the speed of the video `video.playbackRate = playbackRate`.
+
+----
