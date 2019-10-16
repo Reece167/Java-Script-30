@@ -110,3 +110,55 @@ Last thing is to have the function run every second to update each hand at the s
 can be done using a `setInterval(setDate, 1000)`.
 
 ----
+
+**HTML 5 Canvas**
+
+Holding the mouse button down on the page will allow you to draw on the canvas in colours that
+dynamically move through the colour spectrum, while also changing the size of the 'brush'
+as you draw.
+
+Canvas in HTML 5 is similar to the program Paint, where you get an area of pixels to draw on.
+However, you don't draw on the canvas element, instead you draw on what is called the context.
+
+----
+First we need to get the canvas layer using a querySelector and the context with 
+`const ctx = canvas.getContext('2d')` giving it the attribute of 2d.
+Then we can re-size the canvas to what ever we want, but for this instance we'll have it the 
+size of the window using `canvas.width = window.innerWidth` ,
+`canvas.height = window.innerHeight`.
+
+Now we need to initialise the context layer with some drawing properties in order to allow us
+to set up a drawing function. These properties set up things like the size of the lines, and 
+whether the lines are made of squares or round circles etc. We also need to initialise some
+variables so we can get into the function as we aren't drawing when we not holding down
+the mouse button. Such as stating that we aren't drawing now and the last x and y 
+coordinates.
+
+With the function draw we can use an if statement to stop the function if the mouse isn't down.
+However, we want to use some event listeners to detect when the mouse is up, down or out of the
+window in order to set when `isDrawing` to true only when the mouse is down. Now that we have
+everything in the function to only run when the mouse is down, we can set up what we want to
+happen when we draw. We start with `ctx.beginPath()` to start a path on the context with
+`ctx.moveto(lastX, lastY)`,`ctx.lineTo(e.offsetX, e.offsetY)` to set up the line that is
+going to be drawn with the mouse, but nothing will happen until we `ctx.stroke()` that will put
+coloured line onto the canvas. However, the line will still start from 0,0 and will jump
+to the new position of the mouse when you try and draw a new line, so we need to update the
+X and Y values before we draw and after we have drawn our line. With
+`[lastX, lastY] = [e.offsetX, e.offsetY]` we update these values to allow us to create lines
+that are where we draw with our mouse.
+
+With the actual drawing of the lines complete, we can now adjust the size of the lines and
+the colour. Using hsl (hue, saturation, lightness) we can get the colour spectrum and
+programmatically pick the colours we want and blend to them in a loop to create a dynamic
+colour change as we draw. Starting from the colour red
+`ctx.strokeStyle = hsl(${hue}, 100%, 50%)` we set the colour to start from, at the end of the
+draw function we can set a statement to return the hue to 0 if it goes over 360 otherwise
+increment it to go through the spectrum. With the colour set to change as you draw all that
+needs doing is changing the line width as you draw. All we need is to create a statement
+to flip the direction of increment or decrement if the width reaches either boundary,
+`if (ctx.lineWidth >= 50 || ctx.lineWidth <= 1) { direction = !direction`.
+Then we can say if direction is true then we can increment the line, else we decrement.
+Creating a forever incrementing and decrement line width as you draw.
+
+----
+
