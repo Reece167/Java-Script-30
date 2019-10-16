@@ -72,4 +72,41 @@ allows us to identify which ones have the class applied, where we can loop over 
 Then we can listen for a *transitionend* and when that ends we run a remove function to
 use `this.classList.remove('playing')` to remove the class that is applied to any key.
 
----
+----
+
+**Clock**
+
+This project is a simple ticking clock that updates every second based off of real time from
+javascript. We rotate each hand based on the centre of the clock and apply specific rotations
+to each hand in order to represent seconds, minutes and hours.
+
+----
+In the hand object we have the properties of each hand of the clock, however they all start 
+facing at 9, so we need to apply a 90* rotation to begin with in order to have the clock begin
+at 12. We also need the `transform-origin:` to be 100% in order to set the position to transform
+on the far right of the hands, in order to have them rotate from the centre of the clock.
+Now that the hands are in position we want to apply a transition in order to create the look
+of each hand moving from one angle to another, this removes the appearance of each hand snapping
+to each position. We us a `transition-timing-function: cubic-bezier()` in order to create the
+look of a normal clock ticking along. We also need to use a transition timing property in order
+to set the length of time the animation takes.
+
+Now that we've got the look of the clock sorted, we need to make the scripts for each hand in
+order for them to know the real time of day in order to behave appropriately as a clock.
+For each hand we need to get their respecting elements in order to apply the rotations for them,
+using querySelectors. Then we can create a function designed to get the current date/time in
+javascript using `const now = new Date()`, this gets . Using new variables such as 
+`const seconds = now.getSeconds()`, `const minutes = now.getMinutes()`, `const hours 
+= now.getHours()` gives us the correct time for each hand. However, we need to convert the time
+into degrees on the clock in order for it to operate correctly. For seconds and minutes
+we do `const secondsDegrees = ((seconds / 60) * 360) + 90` and
+`const minutesDegrees = ((minutes / 60) * 360) + 90` to give us degrees in 360*, while
+applying a 90* offset as it will start from the default position of the hands which were in the
+wrong position requiring a offset as well. For the hours we do 
+`const hoursDegrees = ((hours / 12) * 360) + 90` which gives us the 12 positions within a 360*
+space to give us the 12 hours on a clock.
+
+Last thing is to have the function run every second to update each hand at the same time, which
+can be done using a `setInterval(setDate, 1000)`.
+
+----
