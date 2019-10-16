@@ -17,7 +17,7 @@
   ctx.strokeStyle = '#BADA55';
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
-  ctx.lineWidth = 50;
+  ctx.lineWidth = 10;
   ctx.globalCompositeOperation = 'luminosity';
 
   let isDrawing = false;
@@ -30,14 +30,14 @@
     if (!isDrawing) return; // Stops the function when not drawing
     console.log(e);
 
-    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`
+    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
 
     ctx.beginPath();  // Start from
     ctx.moveTo(lastX, lastY); // Go to
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
+        [lastX, lastY] = [e.offsetX, e.offsetY];
 
-    [lastX, lastY] = [e.offsetX, e.offsetY];
     if (hue >= 360) {
       hue = 0;
     } else {
