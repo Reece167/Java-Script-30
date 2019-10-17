@@ -249,3 +249,36 @@ Then we take the minutes and turn them into seconds before passing them to our t
 removing the inputted time from the form.
 
 ----
+
+**Whack a Mole Game**
+
+A simple game that when ran, moles come out of the mounds in random orders for a random duration,
+where you have a limited time to click on them to score a point within a total of 10 seconds.
+
+----
+
+First things to do is make a random time function to generate a random time that the moles will
+pop-up for. Using a minimum and maximum value we return
+`Math.round(Math.random() * (max - min) + min)` to give us a random number to use. Next we need
+a function that will pick a random hole out of the six available, however with a 1 in 6 chance
+there is the likely hood of having the same number picked more than once. So we need to
+utilise a selection if the same hole is chosen consecutively we call the function again to
+start over until it chooses a different hole.
+
+Now we need a function to get the moles to come out of the mounds using a random time and
+mound by using the previous two function, then applying a new class
+`hole.classList.add('up')` for an interval of the time variable. Where, once the time has
+ended we remove the class up from the hole to make the mole go away in  a nice animation.
+
+For stating the game we need another function to reset the score board to 0 in case you decide 
+to play the more than once. Then we tell it to run the function that triggers the moles to
+come out for a duration of 10 seconds then stop the game. But to play the game of clicking
+the moles to score points we need a function to allow us to click on them. For each of
+the moles we need to event listen for when we click on any of the moles, where we can then
+run our function. To make sure that you do click on the mole instead of using a program
+to simulate the click to win the game we need to use the events *isTrusted* property
+to only accept real mouse clicks. If the click is trusted then we can increment the score
+and remove the class up of the mole like before as well as update the score board with
+you new score.
+
+----
