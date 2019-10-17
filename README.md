@@ -12,7 +12,7 @@
 
 //////////////////////////////////// ////////////////////////////////////
 
-**Dev Tools**
+**Dev Tools** - - - - - - - - - - **Local Storage**
 
 //////////////////////////////////// ////////////////////////////////////
 
@@ -342,3 +342,6 @@ each element with `.map` which returns an array, requiring us to `.join("")` the
 separate strings.
 
 ----
+
+**Local Storage**
+
