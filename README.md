@@ -282,3 +282,43 @@ and remove the class up of the mole like before as well as update the score boar
 you new score.
 
 ----
+
+**Speech Synthesis**
+
+Using the speech synthesis api that is in most modern browsers to convert text to voice, with
+a range  of voices and languages. While also allowing the manipulation of the speed at which
+the text is spoken and the pitch.
+
+----
+
+We are going to create a new speech utterance, which will control what is the voice going to
+say, the rate at which they say it and the pitch as well as the voice in which it is said.
+
+First we must set the default text to be spoken using `msg.text` and the text element on
+the page. Once we have the text ready we need to populate the voices into our voices array, so
+that we can later add them to a list to choose from. We use `voices = this.getVoices()` to get
+all the voices in the browser, which we can use to loop over and set them as options in the
+drop down menu. `voicesDropdown.innerHTML = voices`
+`.map(voice => <option value="${voice.name}">${voice.name}(${voice.lang})</option>option>)
+.join('')`. Now we have our voice options we need to be able to choose a voice from the
+drop down, using an event listener we wait until the voice is selected then we use
+a setVoice function to loop over the array until it finds the one that matches the value you
+selected and set the `msg.voice`. In the event you choose a different voice while one is 
+currently speaking, we need to be able to toggle off the previous voice and use the new one.
+Which is done with a toggle function using `speechSynthesis.cancel()`, then we start the
+speech synthesis again.
+
+To get all the options set, rate, pitch and being able to change the text that gets spoken.
+For each of the options we are going to run an event listener to listen for a change in any
+of the options then go to the setOptions function. Then we can take the value that is
+changed in the option and apply it to the name of the same option on the page, that controls
+the utterance.
+
+The last thing todo is to listen out for when either the stop or speak buttons are pressed,
+so we can link them up as actual controls. By linking the speak button to the toggle function,
+and the stop button to the toggle function as well. However, we need to pass another function
+through to the toggle function so we can pass an argument as false. This is done by doing a
+arrow function to pass the argument false, making it stop the voice.
+
+----
+
