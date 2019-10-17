@@ -331,3 +331,14 @@ alphabetised list.
 
 ----
 
+To begin with we need to create a sorted list variable to hold the data were going to sort.
+Using `const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1)`, we take
+the data one-by-one and pass them into a strip function that removes all the articles
+that we don't want. Then continue in sorting the strings based on alphabetical value into
+the sorted variable.
+
+Now we need to select the innHTML of list we want to store our new data to, while looping over
+each element with `.map` which returns an array, requiring us to `.join("")` the array into
+separate strings.
+
+----
