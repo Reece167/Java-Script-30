@@ -8,7 +8,7 @@
 
 //////////////////////////////////// ////////////////////////////////////
 
-**HTML5 Canvas**
+**HTML5 Canvas** - - - - - **Sorting Without Articles**
 
 //////////////////////////////////// ////////////////////////////////////
 
@@ -319,6 +319,15 @@ so we can link them up as actual controls. By linking the speak button to the to
 and the stop button to the toggle function as well. However, we need to pass another function
 through to the toggle function so we can pass an argument as false. This is done by doing a
 arrow function to pass the argument false, making it stop the voice.
+
+----
+
+**Sorting Without Articles**
+
+Sorting an array of names (in this case band names) into alphabetical order, while removing
+the 'a', 'the', 'oh' etc from them in the sorting, while keeping them once you push the
+data to a web page. As these words are articles and often mess up the order of an
+alphabetised list.
 
 ----
 
