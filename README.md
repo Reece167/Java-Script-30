@@ -345,3 +345,60 @@ separate strings.
 
 **Local Storage**
 
+Using a simple ordering menu, we can use checkboxes and the ability to add new items to the
+menu in order to test our local storage. The design should allow you to add any item you want
+and check any box you want, refresh the page and have them still be there. 
+
+----
+
+To start we need listen for a submit event on the page, in case someone presses the add item 
+button or presses enter, or any other method of submitting to cover all bases. When the event
+is triggered we run a function called addItem, however when someone triggers the submit
+event the page will refresh which we don't want. So we use 
+`e.preventDefault()` to stop the page from reloading or from being sent to a server.
+Then we need to take the text that gets entered and put it in an object, each item will have
+a text property of the text that was entered and a done state of false that relates to the
+future checked box state. Using the `this` tag with a querySelector we can select the form
+that the item is in and put it in the object. Once we have the data we can reset the text box
+with `this.reset()`.
+
+Then we want to take the item from the object and put them into the items array in order to
+place the items into a list. Using a populateList function we pass the items into a plates
+list. However, in the event that we don't pass any data we set the default value to be an empty
+array in order to prevent the script of braking. This function is designed to be able to be
+passed any array list and any destination in case you want more lists and options to use.
+Now we map over the array list, using an index to return a html. And using a list item,
+we place each item in the array into the html with a label. As we have joined the array we 
+get a big string, that the list can use and separate each item into the list. Now we add an
+input to the list, containing a checkbox that we link up with the items index. But to know
+whether the check boxes are checked or not we need to use a ternary operator to check the boxes
+correctly while setting up for when we need to page to remember on refresh that the
+boxes were checked. `${plate.done ? 'checked' : ''}` This checks the box if the done
+property is true otherwise it leaves the box unchecked, while allowing us to properly check
+the boxes when we click on them.
+
+Now we need to utilise the pages local storage in order to retain the checks in the boxes as
+well as the lists of items when you load the page again or refresh it. To do this we need to
+send the populateList array into the local storage, but as a string as strings are all the
+storage understands, `localStorage.setItem('items', JSON.stringify(items))`. But on page load,
+we need to turn this string into an array of objects for the list to use when there is data
+that is saved from previous times using `populateList(items, itemsList)` to call the function
+to load the items to the list. However, we need to be able to turn the items in the storage
+into a use able array if there are any, otherwise we use an empty array.
+`const items = JSON.parse(localStorage.getItem('items')) || []` If we refresh the page or load
+it up another time all the data from the previous use will still be there, but if there was no
+data you can start from the beginning and add new data to the list.
+
+The last thing to do is persist the toggling of the checkboxes over refreshes etc, using
+local storage. We use a new function called toggleDone, where we listen for when a click is
+made on the form that matches any of the indexed boxes. This is event delegation as we can't
+directly listen for when a checkbox is clicked as they are created after we listen for an event,
+which doesn't work. So we need to listen for when any of the forms items, or plates are clicked.
+This is useful for when we add extra items, this function will still work as they will all
+conform into the form and be apart of the list. If we click on an input we proceed,
+otherwise we return out of the function. So if we proceed we match the index of the list item
+with the dataset we clicked on and set the inverse of the done property. So if we tick the box
+we set done to true and if we un tick it we set it to false. Now all we need to do is 
+update the local storage by sending the new updated array of objects to the local storage.
+
+----
